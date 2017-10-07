@@ -1,0 +1,4 @@
+---
+use_distro_packages: True
+# stable, development, or staging
+wine_release: development

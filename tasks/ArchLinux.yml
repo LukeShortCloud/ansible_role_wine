@@ -1,0 +1,18 @@
+---
+- set_fact:
+    wine_package: wine
+  when: wine_release == "development"
+
+- set_fact:
+    wine_package: wine-staging
+  when: wine_release == "staging"
+
+- name: Installing the official Wine package provided by Arch Linux
+  pacman:
+    name: "{{ wine_package }}"
+    state: latest
+    update_cache: yes
+
+- fail:
+    msg: "wine-stable has to be installed from the AUR."
+  when: wine_release == "stable"

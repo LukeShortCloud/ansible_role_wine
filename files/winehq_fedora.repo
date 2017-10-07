@@ -1,0 +1,7 @@
+[WineHQ]
+name=WineHQ packages (Fedora $releasever)
+type=rpm-md
+baseurl=https://dl.winehq.org/wine-builds/fedora/$releasever
+gpgcheck=1
+gpgkey=https://repos.wine-staging.com/wine/Release.key
+enabled=1

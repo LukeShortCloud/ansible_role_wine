@@ -1,0 +1,50 @@
+---
+- name: Installing the WineHQ repository for Fedora
+  copy:
+    src: winehq_fedora.repo
+    dest: /etc/yum.repos.d/winehq.repo
+    mode: 0644
+    owner: root
+    group: root
+    backup: no
+  when: not use_distro_packages
+
+- set_fact:
+    wine_package:
+      name: wine-stable64
+      dir: /opt/wine-stable
+  when: (wine_release == "stable") and
+        (not use_distro_packages)
+
+- set_fact:
+    wine_package:
+      name: wine-development64
+      dir: /opt/wine-development
+  when: (wine_release == "development") and
+        (not use_distro_packages)
+
+- set_fact:
+    wine_package:
+      name: wine-staging64
+      dir: /opt/wine-staging
+  when: (wine_release == "staging") and
+        (not use_distro_packages)
+
+- name: Installing the WineHQ packages for Fedora
+  dnf:
+    name: "{{ wine_package['name'] }}"
+    state: latest
+  when: not use_distro_packages
+
+- name: Creating symlink to the Wine binary
+  file:
+    src: "{{ wine_package['dir'] }}/bin/wine64"
+    dest: "/usr/bin/winehq"
+    state: link
+  when: not use_distro_packages
+
+- name: Installing the official Wine Staging release provided by Fedora
+  dnf:
+    name: wine
+    state: latest
+  when: use_distro_packages

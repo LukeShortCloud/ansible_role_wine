@@ -1,0 +1,9 @@
+---
+- include_tasks: "ArchLinux.yml"
+  when: ansible_distribution in ["ArchLinux", "Arch Linux"]
+
+- include_tasks: "Fedora.yml"
+  when: ansible_distribution == "Fedora"
+
+- include_tasks: "other.yml"
+  when: ansible_distribution not in ["ArchLinux", "Arch Linux", "Fedora"]
