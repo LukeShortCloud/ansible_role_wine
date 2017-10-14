@@ -19,7 +19,7 @@
 - set_fact:
     wine_package:
       name: wine-development64
-      dir: /opt/wine-development
+      dir: /opt/wine-devel
   when: (wine_release == "development") and
         (not use_distro_packages)
 
