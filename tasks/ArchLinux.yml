@@ -1,4 +1,8 @@
 ---
+- fail:
+    msg: "wine-stable has to be installed from the AUR."
+  when: wine_release == "stable"
+
 - set_fact:
     wine_package: wine
   when: wine_release == "development"
@@ -12,7 +16,3 @@
     name: "{{ wine_package }}"
     state: latest
     update_cache: yes
-
-- fail:
-    msg: "wine-stable has to be installed from the AUR."
-  when: wine_release == "stable"
