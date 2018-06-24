@@ -8,3 +8,10 @@
 - include_tasks: "other.yml"
   when: (ansible_distribution not in ["Fedora"]) and
         (ansible_os_family != "Archlinux")
+
+- name: Initalize the local Wine directory
+  command: wineboot --init
+
+- name: Prevent pictures and other formats from opening up with Wine
+  command: "rm -r -f -v {{ item }}"
+  loop: "{{ wine_shorcut_associations }}"
