@@ -9,7 +9,7 @@ galaxy_info:
      versions:
        - 27
        - 28
-   - name: Arch Linux
+   - name: ArchLinux
      versions:
        - all
   galaxy_tags:
