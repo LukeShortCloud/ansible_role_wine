@@ -7,10 +7,11 @@ galaxy_info:
   platforms:
    - name: Fedora
      versions:
-     - 24
-     - 25
-     - 26
+       - 27
+       - 28
    - name: Arch Linux
+     versions:
+       - all
   galaxy_tags:
    - emulator
    - games
