@@ -2,4 +2,5 @@
 use_distro_packages: True
 # stable, development, or staging
 wine_release: development
-user_home: "{{ ansible_env.HOME }}"
+wine_user: "{{ ansible_user }}"
+wine_user_home: "{{ ansible_user_dir }}"
