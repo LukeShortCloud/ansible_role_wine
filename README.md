@@ -1,4 +1,4 @@
-# ansible-role-wine
+# ansible_role_wine
 
 The "wine" Ansible role is a flexible role for installing different versions of Wine on many UNIX-like platforms.
 
@@ -22,11 +22,11 @@ This example Playbook installs the latest Wine Staging release directly from Win
 
 ```
 - hosts: localhost
-  vars:
-    use_distro_packages: False
-    wine_release: staging
   roles:
-   - ansible-role-wine
+    - name: ansible_role_wine
+      vars:
+        use_distro_packages: False
+        wine_release: staging
 ```
 
 ## License
