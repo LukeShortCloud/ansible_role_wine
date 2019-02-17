@@ -14,5 +14,5 @@
 - name: Installing the official Wine package provided by Arch Linux
   pacman:
     name: "{{ wine_package }}"
-    state: latest
+    state: present
     update_cache: yes

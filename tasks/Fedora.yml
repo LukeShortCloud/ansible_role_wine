@@ -33,7 +33,7 @@
 - name: Installing the WineHQ packages for Fedora
   dnf:
     name: "{{ wine_package['name'] }}"
-    state: latest
+    state: present
   when: not use_distro_packages
 
 - name: Creating symlink to the Wine binary
@@ -46,5 +46,5 @@
 - name: Installing the official Wine Staging release provided by Fedora
   dnf:
     name: wine
-    state: latest
+    state: present
   when: use_distro_packages
