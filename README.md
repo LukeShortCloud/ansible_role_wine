@@ -4,7 +4,7 @@ The "wine" Ansible role is a flexible role for installing different versions of 
 
 ## Requirements
 
-Ansible >= 2.6
+Ansible >= 2.7
 
 ## Role Variables
 
