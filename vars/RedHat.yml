@@ -11,16 +11,17 @@ wine_dependencies:
   - glibc-devel.i686
   - gnutls-devel.i686
   - gsm-devel.i686
-  - gtk3-devel.i686
+# This currently fails due to an upstream bug in Fedora:
+# https://bugzilla.redhat.com/show_bug.cgi?id=1651231
+#  - gtk3-devel.i686
   - json-c.i686
   - lcms2-devel.i686
   - libasyncns.i686
   - libattr-devel.i686
-  - libcapifax-devel.i686
   - libcom_err-devel.i686
   - libcom_err-devel.x86_64
   - libedit.i686
-  - liberation-narrow-fonts.noarch
+  - liberation-fonts.noarch
   - libexif-devel.i686
   - libexif.i686
   - libgcc.i686
@@ -28,7 +29,6 @@ wine_dependencies:
   - libICE.i686
   - libieee1284.i686
   - libjpeg-turbo-devel.i686
-  - libNX_Xext-devel.i686
   - libogg.i686
   - libpcap-devel.i686
   - libpng-devel.i686
@@ -43,6 +43,7 @@ wine_dependencies:
   - libwayland-client.i686
   - libwayland-server.i686
   - libX11-devel.i686
+  - libXcomp-devel.i686
   - libXcomposite-devel.i686
   - libXcursor-devel.i686
   - libXext-devel.i686
@@ -67,6 +68,7 @@ wine_dependencies:
   - mpg123-devel.i686
   - mpg123-devel.x86_64
   - ncurses-devel.i686
+  - nx-libs-devel.i686
   - nss-mdns.i686
   - ocl-icd.i686
   - openal-soft-devel.i686
@@ -75,7 +77,7 @@ wine_dependencies:
   - pulseaudio-libs-devel
   - pulseaudio-libs-devel.i686
   - pulseaudio-libs.i686
-  - python-talloc.x86_64
+  - python2-talloc.x86_64
   - samba-common-tools.x86_64
   - samba-libs.x86_64
   - samba-winbind-clients.x86_64
