@@ -52,3 +52,7 @@ wine_dependencies:
   - vulkan-icd-loader
   - wine_gecko
   - wine-mono
+
+# Arch Linux provides the source code for a library inside the same package, unlike other
+# operating systems such as Debian or Fedora which use separate packages.
+wine_build_dependencies: "{{ wine_dependencies }}"
