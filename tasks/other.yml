@@ -2,4 +2,4 @@
 - name: Attempting to install Wine on a unsupported platform
   package:
     name: wine
-    state: latest
+    state: present
