@@ -17,7 +17,10 @@
       command: wineboot --init
 
     - name: Prevent pictures and other formats from opening up with Wine
-      shell: "rm -r -f -v {{ item }}"
+      command: "rm -r -f -v {{ item }}"
       loop: "{{ wine_shorcut_associations }}"
+      args:
+        warn: false
+      changed_when: false
   become: True
   become_user: "{{ wine_user }}"

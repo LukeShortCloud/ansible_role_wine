@@ -1,18 +1,21 @@
 ---
-- fail:
+- name: check if we have to use aur
+  fail:
     msg: "wine-stable has to be installed from the AUR."
   when: wine_release == "stable"
 
-- set_fact:
+- name: set wine fact
+  set_fact:
     wine_package: wine
   when: wine_release == "development"
 
-- set_fact:
+- name: set wine-staging fact
+  set_fact:
     wine_package: wine-staging
   when: wine_release == "staging"
 
 - name: Installing the official Wine package provided by Arch Linux
   pacman:
     name: "{{ wine_package }}"
-    state: latest
+    state: present
     update_cache: yes
