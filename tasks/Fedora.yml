@@ -1,5 +1,6 @@
 ---
 - name: Installing the WineHQ repository for Fedora
+  become: true
   copy:
     src: winehq_fedora.repo
     dest: /etc/yum.repos.d/winehq.repo
@@ -34,12 +35,14 @@
         (not use_distro_packages | bool)
 
 - name: Installing the WineHQ packages for Fedora
+  become: true
   dnf:
     name: "{{ wine_package['name'] }}"
     state: present
   when: not use_distro_packages | bool
 
 - name: Creating symlink to the Wine binary
+  become: true
   file:
     src: "{{ wine_package['dir'] }}/bin/wine64"
     dest: "/usr/bin/winehq"
@@ -47,6 +50,7 @@
   when: not use_distro_packages | bool
 
 - name: Installing the official Wine Staging release provided by Fedora
+  become: true
   dnf:
     name: wine
     state: present
