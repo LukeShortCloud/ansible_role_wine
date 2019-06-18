@@ -1,5 +1,6 @@
 ---
 - name: Attempting to install Wine on a unsupported platform
+  become: true
   package:
     name: wine
     state: present

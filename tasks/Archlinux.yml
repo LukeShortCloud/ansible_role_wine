@@ -15,6 +15,7 @@
   when: wine_release == "staging"
 
 - name: Installing the official Wine package provided by Arch Linux
+  become: true
   pacman:
     name: "{{ wine_package }}"
     state: present
