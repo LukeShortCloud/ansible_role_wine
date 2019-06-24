@@ -1,5 +1,6 @@
 ---
 - name: Installing the WineHQ repository for Fedora
+  become: true
   copy:
     src: winehq_fedora.repo
     dest: /etc/yum.repos.d/winehq.repo
@@ -7,44 +8,50 @@
     owner: root
     group: root
     backup: no
-  when: not use_distro_packages
+  when: not use_distro_packages | bool
 
-- set_fact:
+- name: set wine-stable64 fact
+  set_fact:
     wine_package:
       name: wine-stable64
       dir: /opt/wine-stable
   when: (wine_release == "stable") and
-        (not use_distro_packages)
+        (not use_distro_packages | bool)
 
-- set_fact:
+- name: set wine-development64 fact
+  set_fact:
     wine_package:
       name: wine-development64
       dir: /opt/wine-devel
   when: (wine_release == "development") and
-        (not use_distro_packages)
+        (not use_distro_packages | bool)
 
-- set_fact:
+- name: set wine wine-staging64 fact
+  set_fact:
     wine_package:
       name: wine-staging64
       dir: /opt/wine-staging
   when: (wine_release == "staging") and
-        (not use_distro_packages)
+        (not use_distro_packages | bool)
 
 - name: Installing the WineHQ packages for Fedora
+  become: true
   dnf:
     name: "{{ wine_package['name'] }}"
     state: present
-  when: not use_distro_packages
+  when: not use_distro_packages | bool
 
 - name: Creating symlink to the Wine binary
+  become: true
   file:
     src: "{{ wine_package['dir'] }}/bin/wine64"
     dest: "/usr/bin/winehq"
     state: link
-  when: not use_distro_packages
+  when: not use_distro_packages | bool
 
 - name: Installing the official Wine Staging release provided by Fedora
+  become: true
   dnf:
     name: wine
     state: present
-  when: use_distro_packages
+  when: use_distro_packages | bool
