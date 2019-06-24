@@ -1,4 +1,8 @@
 ---
+- name: Include operating system family variables
+  include_vars:
+    file: "{{ ansible_os_family }}.yml"
+
 - include_tasks: "Archlinux.yml"
   when: ansible_os_family == "Archlinux"
 
@@ -11,6 +15,24 @@
 
 - include_tasks: "other.yml"
   when: ansible_os_family not in ["Archlinux", "RedHat"]
+
+# For the best results when testing Wine.
+# Most of these have been derived from system packages and these links:
+# https://www.gloriouseggroll.tv/how-to-get-out-of-wine-dependency-hell/
+# https://wiki.winehq.org/Fedora
+- name: Install recommended libraries for Wine
+  package:
+    name: "{{ item }}"
+    state: present
+  loop: "{{ wine_dependencies | flatten }}"
+  when: wine_install_dependencies
+
+- name: Install build dependencies for Wine
+  package:
+    name: "{{ item }}"
+    state: present
+  loop: "{{ wine_build_dependencies | flatten }}"
+  when: wine_install_build_dependencies
 
 - block:
     - name: Initialize the local Wine directory
