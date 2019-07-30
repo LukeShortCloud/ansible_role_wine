@@ -21,6 +21,7 @@
 # https://www.gloriouseggroll.tv/how-to-get-out-of-wine-dependency-hell/
 # https://wiki.winehq.org/Fedora
 - name: Install recommended libraries for Wine
+  become: true
   package:
     name: "{{ item }}"
     state: present
@@ -28,6 +29,7 @@
   when: wine_install_dependencies
 
 - name: Install build dependencies for Wine
+  become: true
   package:
     name: "{{ item }}"
     state: present
