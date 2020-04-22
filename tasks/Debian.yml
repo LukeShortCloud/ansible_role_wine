@@ -1,0 +1,7 @@
+---
+- name: Install Wine on Debian
+  apt:
+    name: wine
+    state: present
+    install_recommends: true
+  when: use_distro_packages | bool

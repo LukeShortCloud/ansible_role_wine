@@ -6,6 +6,9 @@
 - include_tasks: "Archlinux.yml"
   when: ansible_os_family == "Archlinux"
 
+- include_tasks: "Debian.yml"
+  when: ansible_distribution == "Debian"
+
 - include_tasks: "EL.yml"
   when: (ansible_distribution == "CentOS") or
         (ansible_distribution == "EL")

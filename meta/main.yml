@@ -9,6 +9,9 @@ galaxy_info:
    - name: ArchLinux
      versions:
        - all
+   - name: Debian
+     versions:
+       - 10
    - name: EL
      versions:
        - 7
