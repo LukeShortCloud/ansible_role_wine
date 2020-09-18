@@ -22,9 +22,9 @@ galaxy_info:
    - name: ManjaroLinux
      versions:
        - all
-  - name: Ubuntu
-    versions:
-      - bionic
+   - name: Ubuntu
+     versions:
+       - bionic
   galaxy_tags:
    - emulator
    - games
