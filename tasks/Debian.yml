@@ -5,3 +5,42 @@
     state: present
     install_recommends: true
   when: use_distro_packages | bool
+
+- name: Setup WineHQ packages on Debian
+  when: not (use_distro_packages | bool)
+  block:
+    - name: set wine-stable64 fact
+      set_fact:
+        wine_package:
+          name: wine-stable-amd64
+          dir: /opt/wine-stable
+      when: wine_release == "stable"
+
+    - name: set wine-development64 fact
+      set_fact:
+        wine_package:
+          name: wine-devel-amd64
+          dir: /opt/wine-devel
+      when: wine_release == "development"
+
+    - name: set wine wine-staging64 fact
+      set_fact:
+        wine_package:
+          name: wine-staging-amd64
+          dir: /opt/wine-staging
+      when: wine_release == "staging"
+
+    - name: Add WineHQ GPG repostiory key
+      apt_key:
+       url: https://dl.winehq.org/wine-builds/winehq.key
+       keyring: /etc/apt/trusted.gpg.d/winehq.gpg
+
+    - name: Add WineHQ repository
+      apt_repository:
+        repo: deb https://dl.winehq.org/wine-builds/{{ ansible_distribution | lower }}/ {{ ansible_distribution_release }} main
+      register: wine_winehq_repo_debian
+
+    - name: Update the Apt cache
+      apt:
+        update_cache: yes
+      when: wine_winehq_repo_debian.changed

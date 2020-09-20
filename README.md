@@ -9,6 +9,7 @@ Ansible >= 2.7
 ## Role Variables
 
 * use_distro_packages = Install "wine" using the package provided by the operating system's package manage. If set to False, packages from WineHQ will be installed instead. Default: `True`.
+    * WineHQ only provides packages for these Linux distributions: Debian, Fedora, and Ubuntu.
 * user_home = The home directory of the user that will be running Wine. Default: `{{ ansible_user_dir }}`.
 * wine_install_dependencies = Install recommended/optional packages for Wine. Default: `True`.
 * wine_install_build_dependencies = Install packages required to build Wine from source code. Default: `False`.

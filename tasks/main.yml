@@ -17,7 +17,22 @@
   when: ansible_distribution == "Fedora"
 
 - include_tasks: "other.yml"
-  when: ansible_os_family not in ["Archlinux", "RedHat"]
+  when: ansible_os_family not in ["Archlinux", "Debian", "RedHat"]
+
+- name: Installing the WineHQ packages
+  become: true
+  package:
+    name: "{{ wine_package['name'] }}"
+    state: present
+  when: not (use_distro_packages | bool)
+
+- name: Creating symlink to the Wine binary
+  become: true
+  file:
+    src: "{{ wine_package['dir'] }}/bin/wine64"
+    dest: "/usr/bin/winehq"
+    state: link
+  when: not (use_distro_packages | bool)
 
 # For the best results when testing Wine.
 # Most of these have been derived from system packages and these links:

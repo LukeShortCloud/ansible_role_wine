@@ -24,7 +24,10 @@ galaxy_info:
        - all
    - name: Ubuntu
      versions:
+       # 18.04
        - bionic
+       # 20.04
+       - focal
   galaxy_tags:
    - emulator
    - games
