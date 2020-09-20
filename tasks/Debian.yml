@@ -6,27 +6,30 @@
     install_recommends: true
   when: use_distro_packages | bool
 
-- name: Setup WineHQ packages on Debian
+- name: Set WineHQ repository and package names for Debian
   when: not (use_distro_packages | bool)
   block:
-    - name: set wine-stable64 fact
+    - name: Set WineHQ stable package names fact for Debian
       set_fact:
         wine_package:
-          name: wine-stable-amd64
+          name_64_bit: wine-stable-amd64
+          name_32_bit: wine-stable
           dir: /opt/wine-stable
       when: wine_release == "stable"
 
-    - name: set wine-development64 fact
+    - name: Set WineHQ development package names fact for Debian
       set_fact:
         wine_package:
-          name: wine-devel-amd64
+          name_64_bit: wine-devel-amd64
+          name_32_bit: wine-devel
           dir: /opt/wine-devel
       when: wine_release == "development"
 
-    - name: set wine wine-staging64 fact
+    - name: Set WineHQ staging package names fact for Debian
       set_fact:
         wine_package:
-          name: wine-staging-amd64
+          name_64_bit: wine-staging-amd64
+          name_32_bit: wine-staging
           dir: /opt/wine-staging
       when: wine_release == "staging"
 

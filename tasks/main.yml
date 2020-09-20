@@ -22,16 +22,24 @@
 - name: Installing the WineHQ packages
   become: true
   package:
-    name: "{{ wine_package['name'] }}"
+    name: "{{ wine_package[item] }}"
     state: present
+  loop:
+    - name_64_bit
+    - name_32_bit
   when: not (use_distro_packages | bool)
 
 - name: Creating symlink to the Wine binary
   become: true
   file:
-    src: "{{ wine_package['dir'] }}/bin/wine64"
-    dest: "/usr/bin/winehq"
+    src: "{{ wine_package['dir'] }}/bin/{{ item.bin }}"
+    dest: "/usr/bin/{{ item.link }}"
     state: link
+  loop:
+    - bin: wine64
+      link: winehq64
+    - bin: wine
+      link: winehq
   when: not (use_distro_packages | bool)
 
 # For the best results when testing Wine.

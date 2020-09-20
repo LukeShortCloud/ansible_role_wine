@@ -1,25 +1,28 @@
 ---
-- name: Set WineHQ package names and repository
+- name: Set WineHQ repository and package names for Fedora
   when: not (use_distro_packages | bool)
   block:
-    - name: set wine-stable64 fact
+    - name: Set WineHQ stable package names fact for Fedora
       set_fact:
         wine_package:
-          name: wine-stable64
+          name_64_bit: wine-stable64
+          name_32_bit: wine-stable.i686
           dir: /opt/wine-stable
       when: wine_release == "stable"
 
-    - name: set wine-development64 fact
+    - name: Set WineHQ development package names fact for Fedora
       set_fact:
         wine_package:
-          name: wine-development64
+          name_64_bit: wine-development64
+          name_32_bit: wine-devel.i686
           dir: /opt/wine-devel
       when: wine_release == "development"
 
-    - name: set wine wine-staging64 fact
+    - name: Set WineHQ staging package names fact for Fedora
       set_fact:
         wine_package:
-          name: wine-staging64
+          name_64_bit: wine-staging64
+          name_32_bit: wine-staging.i686
           dir: /opt/wine-staging
       when: wine_release == "staging"
 
