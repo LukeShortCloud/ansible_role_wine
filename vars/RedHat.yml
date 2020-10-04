@@ -153,8 +153,8 @@ wine_dependencies:
   - pulseaudio-libs.i686
   - pulseaudio-libs.x86_64
   - pulseaudio-libs.i686
-  - python2-talloc.x86_64
-  - python2-talloc.i686
+  - python3-talloc.x86_64
+  - python3-talloc.i686
   - samba-common-tools.x86_64
   - samba-libs.x86_64
   - samba-libs.i686
@@ -183,9 +183,7 @@ wine_build_dependencies:
   - glibc-devel.i686
   - gnutls-devel.i686
   - gsm-devel.i686
-# This currently fails due to an upstream bug in Fedora:
-# https://bugzilla.redhat.com/show_bug.cgi?id=1651231
-#  - gtk3-devel.i686
+  - gtk3-devel.i686
   - json-c.i686
   - lcms2-devel.i686
   - libasyncns.i686
@@ -250,7 +248,10 @@ wine_build_dependencies:
   - pulseaudio-libs-devel
   - pulseaudio-libs-devel.i686
   - pulseaudio-libs.i686
-  - python2-talloc.x86_64
+  - python3-talloc-devel.x86_64
+  - python3-talloc-devel.i686
+  - python3-talloc.x86_64
+  - python3-talloc.i686
   - samba-common-tools.x86_64
   - samba-libs.x86_64
   - samba-winbind-clients.x86_64
